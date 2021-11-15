@@ -3,15 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <title>訂單主檔資料</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
+
 <body>
-   <!-- Header -->
-   <div th:include="header::header"></div>
-   <!-- Context -->
-   <h1>新增訂單主檔</h1>
-   
-   <!-- footer -->
-   <div th:include="footer::footer"></div>
+	<div class="container my-2">
+		<!-- Header -->
+		<div th:include="header::header"></div>
+		<!-- Context -->
+		<h1>新增訂單主檔</h1>
+		<form action="#" th:action="@{order/create/}" th:object="${order}"
+			method="post">
+			<div class="form-group">
+				<label for="date">下單日期:</label> <input type="date"
+					th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}"
+					name="date" id="date" placeholder="date" >
+			</div>
+			<div class="form-group">
+				<label for="name">客戶:</label> 
+				   <select class="form-control select2"
+					th:field="*{customer.id}">
+					<option 
+					    th:selected="(${c.id} eq (*{customer.id}?:0))"
+						th:each=c:${customers} 
+						th:text=${c.name}
+						th:value=${c.id} >
+					</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>經手人員:</label> 
+				  <select th:field="*{employee.id}"
+				   class="form-control select2">
+					<option 
+					   th:each="e:${employees}" 
+					   th:text="${e.name}"
+					   th:value="${e.id}">
+					</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="shipmentdate">預計出貨時間:</label> 
+				    <input type="date"
+					th:value="${#dates.format(#dates.createNow() ,'yyyy-MM-dd')}"
+					name="shipmentdate" id="shipmentdate">
+			</div>
+			
+			<div class="form-group">
+				<label for="remarks">備註:</label> 
+				<textarea cols="50" rows="5" th:field="*{remarks}" class="form-control"
+				placeholder="備註....">
+　              </textarea>
+			</div>
+			<input type="submit" value="提交訂單" class="btn btn-danger"> 			
+		</form>
+		
+		<!-- footer -->
+		<div th:include="footer::footer"></div>
+	</div>
 </body>
 </html>
