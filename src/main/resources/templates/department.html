@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>部門資料</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<div class="container my-2">
+	<body>
+		<!-- Header -->
+		<div th:include="header::header"></div>
+		<!-- Context -->
+		<h1>新增部門</h1>
+		<form action="#" 
+		    th:action="@{/department/create}"
+			th:object="${department}" 
+			method="post">
+			<div class="form-group">
+				<label for="name">部門名稱</label> 
+				<input type="text" 
+			  		   th:field="*{name}" 
+			  		   placeholder="請輸入部門名稱" 
+			  		   class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="name">主管姓名</label> 
+				<input type="text" 
+			  		   th:field="*{director}" 
+			  		   placeholder="請輸入主管姓名" 
+			  		   class="form-control" />
+			</div>
+			<input type="submit" value="新增部門" class="btn btn-primary">
+		</form>
+		<p />
+		<h1>部門列表</h1>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>序號</th>
+					<th>部門</th>
+					<th>主管</th>
+					<th>員工</th>
+					<th>員工數量</th>
+					<th>編輯</th>
+					<th>刪除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="department:${departments}">
+					<td th:text="${department.id}"></td>
+					<td th:text="${department.name}"></td>
+					<td th:text="${department.director}"></td>
+					<td>
+					<a th:href="@{/employee/?department_id={id}(id=${department.id})}" class="btn btn-success">檢視員工</a>
+					</td>
+					<td th:text="${#lists.size(department.employees)}"></td>
+					<td><a th:href="@{/department/edit/{id}(id=${department.id})}">編輯</a>
+					</td>
+					<td>
+					<font color="red">請先把員工刪除</font>
+					<a
+					th:if="${#lists.size(department.employees)==0}"
+					th:href="@{/department/delete/{id}(id=${department.id})}"
+					class="btn btn-danger">刪除
+					</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- footer -->
+		<div th:include="footer::footer"></div>
+</div>
+</body>
+</html>

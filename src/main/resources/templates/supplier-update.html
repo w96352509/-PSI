@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>供應商資料</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<div class="container my-2">
+	<body>
+		<!-- Header -->
+		<div th:include="header::header"></div>
+		<!-- Context -->
+		<h1>新增供應商</h1>
+		    <form  
+		    th:action="@{/supplier/update/{id}(id=${supplier.id})}"
+			th:Object="${supplier}" 
+			method="post">
+			<div class="form-group">
+				<label for="name">供應商名稱:</label> <input type="text"
+					th:field="*{name}" placeholder="輸入名稱" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="companyphone">公司電話:</label> <input type="number"
+					th:field="*{companyphone}" placeholder="公司電話" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="companyFax">公司傳真:</label> <input type="number"
+					th:field="*{companyFax}" placeholder="傳真號碼" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="companyFax">聯絡人:</label> <input type="text"
+					th:field="*{contactperson}" placeholder="聯絡人" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="companyFax">公司住址:</label> <input type="text"
+					th:field="*{companyaddress}" placeholder="公司住址"
+					class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="remarks">備註:</label> 
+				<textarea cols="50" rows="5" th:field="*{remarks}" class="form-control"
+				placeholder="備註....">
+　              </textarea>
+			</div>
+               <input type="submit" value="新增供應商" class="btn btn-primary">
+		</form>
+		<p />
+         <!-- footer -->
+		<div th:include="footer::footer"></div>
+</div>
+</body>
+</html>
