@@ -37,10 +37,10 @@ public class CreateOrder {
 	@Test
 	public void start() {
 		// 資料預備
-		Customer c1 = customerRepository.findById(1L).get();
-		Employee e2 = employeeRepository.findById(9L).get();
-		Product p1 = productRepository.findById(3L).get();
-		Product p2 = productRepository.findById(4L).get();
+		Customer c1 = customerRepository.findById(15L).get();
+		Employee e2 = employeeRepository.findById(6L).get();
+		Product p1 = productRepository.findById(90L).get();
+		
 		
 		// 建立訂單
 		Order order = new Order();
@@ -58,18 +58,12 @@ public class CreateOrder {
 		item1.setOrder(order);
 		item1.setProduct(p1);
 		
-		// 建立訂單細目 2
-		OrderItem item2 = new OrderItem();
-		item2.setAmount(7);
-		// 配置訂單細目關聯 2
-		item2.setOrder(order);
-		item2.setProduct(p2);
 		
 		//------------------------------
 		// 保存
 		orderRepository.save(order);
 		orderItemRepository.save(item1);
-		orderItemRepository.save(item2);
+		
 		
 	}
 	

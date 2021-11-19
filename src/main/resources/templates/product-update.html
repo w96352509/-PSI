@@ -11,7 +11,7 @@
    <div th:include="header::header"></div>
    <!-- Context -->
    <h1>新增商品主檔</h1>
-   <form th:action="@{/product/create}"
+   <form th:action="@{/product/update/{id}(id=${product.id})}"
          th:object="${product}"
          method="post">
    
@@ -37,9 +37,7 @@
    
    <div class="form-group">
    <label for="mixamount">最小訂購量</label>
-   <input type="number" placeholder="不可等於0" th:field="*{mixamount}" 
-   readonly="readonly"
-   class="form-control">   
+   <input type="number" placeholder="最小訂購數量" th:field="*{mixamount}" class="form-control">   
    </div>
    
    <div class="form-group">
@@ -51,44 +49,6 @@
    <input type="submit" value="新增產品" class="btn btn-danger">
    </form>
    <p/>
-   <table border="1" class="table table-striped table-responsive-md">
-   <thead>
-        <tr>
-            <th>商品序號(自動生成)</th>
-            <th>商品姓名</th>
-            <th>成本</th>
-            <th>定價</th>
-            <th>單位</th>
-            <th>最小訂購數量</th>
-            <th>商品描述(50字內)</th>
-            <th>編輯</th>
-            <th>刪除</th>
-        </tr>
-   </thead>
-   <tbody>
-        <tr th:each="product:${products}">
-            <td th:text="${product.id}"></td>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.price}"></td>
-            <td th:text="${product.cost}"></td>
-            <td th:text="${product.unit}"></td>
-            <td th:text="${product.mixamount}"></td>
-            <td th:text="${product.description}"></td>
-            <td>
-            <a th:href="@{/product/edit/{id}(id=${product.id})}"
-               class="btn btn-primary"
-            >
-            編輯
-            </a>
-            </td>
-            <td>
-            <a th:href="@{/product/delete/{id}(id=${product.id})}"
-               class="btn btn-danger"
-            >刪除</a>
-            </td>
-        </tr>
-   </tbody>
-   </table>
    <!-- footer -->
    <div th:include="footer::footer"></div>
 </div>

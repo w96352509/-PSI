@@ -25,7 +25,7 @@ public class Purchase {
 	
 	@Column
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@ManyToOne
