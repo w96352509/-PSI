@@ -36,6 +36,7 @@ public class EmployeeController {
 			employee.setDepartment(department);
 			model.addAttribute("employees" , employeeRepository.findByDepartment(department));
 		}
+	     model.addAttribute("employee" , employee);
 		//下拉選單
 	     model.addAttribute("departments" , departmentRepository.findAll());
 	 return "employee";
