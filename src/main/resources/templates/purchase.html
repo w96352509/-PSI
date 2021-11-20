@@ -65,13 +65,17 @@
             <td th:text="${purchase.supplier.name}"></td>
             <td th:text="${purchase.employee.name}"></td>
             <td>
-            <a>檢視明細(未做)</a>
+            <a th:href="@{/purchase/{pid}/view/item(pid=${purchase.id})}"
+            >
+            明細
+            </a>
             </td>
             <td>
             <a th:href="@{/purchase/edit/{id}(id=${purchase.id})}">修改</a>
             </td>
             <td>
-            <a th:href="@{/purchase/delete/{id}(id=${purchase.id})}">刪除</a>
+            <a th:if="${#lists.size(purchase.purchaseItems)==0}"
+               th:href="@{/purchase/delete/{id}(id=${purchase.id})}">刪除</a>
             </td>
          </tr>
    </tbody>

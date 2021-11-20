@@ -37,7 +37,7 @@ public class CreateOrder {
 	@Test
 	public void start() {
 		// 資料預備
-		Customer c1 = customerRepository.findById(15L).get();
+		Customer c1 = customerRepository.findById(1L).get();
 		Employee e2 = employeeRepository.findById(6L).get();
 		Product p1 = productRepository.findById(90L).get();
 		

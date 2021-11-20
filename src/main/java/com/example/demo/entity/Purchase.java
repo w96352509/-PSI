@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.ObjectInputStream.GetField;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,6 +41,29 @@ public class Purchase {
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
+	
+	@OneToMany(mappedBy = "purchase")
+	@OrderBy("id ASC")
+	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
+
+	public Integer getTotal() {
+		if (purchaseItems.size()==0) {
+			return 0;
+		}
+		return purchaseItems.stream().mapToInt(pi -> pi.getAmount() * pi.getProduct().getPrice()).sum();
+	}
+	
+	
+	
+	
+	public Set<PurchaseItem> getPurchaseItems() {
+		return purchaseItems;
+	}
+
+	
+	public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
+		this.purchaseItems = purchaseItems;
+	}
 
 	public Long getId() {
 		return id;

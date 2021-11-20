@@ -42,10 +42,10 @@ public class CreatePurchase {
 	@Test
 	void start() {
 		// 資料預備
-		Supplier s1 = supplierRepository.findById(5L).get();// 供應商
-		Employee e2 = employeeRepository.findById(9L).get();// 服務員工
-		Product p1 = productRepository.findById(3L).get();// 購買商品
-		Product p2 = productRepository.findById(4L).get();
+		Supplier s1 = supplierRepository.findById(6L).get();// 供應商
+		Employee e2 = employeeRepository.findById(3L).get();// 服務員工
+		Product p1 = productRepository.findById(4L).get();// 購買商品
+		
 
 		// 建立採購單
 		Purchase purchase = new Purchase();
@@ -58,22 +58,17 @@ public class CreatePurchase {
 
 		// 建立採購單細目1
 	PurchaseItem item1 = new PurchaseItem();
-		item1.setAmout(3000); //數量
+		item1.setAmount(3000); //數量
 		// 配置採購單細目關聯
 		item1.setPurchase(purchase);
 		item1.setProduct(p1);
 
-		// 建立採購單細目2
-		PurchaseItem item2 = new PurchaseItem();
-			item2.setAmout(5000);
-			// 配置採購單細目關聯
-			item2.setPurchase(purchase);
-			item2.setProduct(p2);
+		
 		
 		//保存
 	    purchaseRepository.save(purchase);
 		purchaseItemRepository.save(item1);
-		purchaseItemRepository.save(item2);
+		
 
 	}
 

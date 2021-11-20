@@ -27,20 +27,16 @@ public class EmployeeController {
 	@RequestMapping("/")
 	public String index(Model model, @RequestParam(name = "department_id", required = false) Long department_id) {
 	   Employee employee = new Employee();
-	   Department department = null;
+	   
 	   //如果有 employee 就會去設定 Department
-	   if (department_id !=null) {
-		department = departmentRepository.findById(department_id).get();
-		employee.setDepartment(department);
-	   }
-	   model.addAttribute("employee",employee);
-	   //印出員工條件
-	   if(department == null) {
-		 model.addAttribute("employees", employeeRepository.findAll());
+	   if (department_id ==null) {
+		   model.addAttribute("employees" , employeeRepository.findAll());
 		}else {
-		 model.addAttribute("employees", employeeRepository.findByDepartment(department));	
+			Department department = departmentRepository.findById(department_id).get();
+			employee.setDepartment(department);
+			model.addAttribute("employees" , employeeRepository.findByDepartment(department));
 		}
-	   //下拉選單
+		//下拉選單
 	     model.addAttribute("departments" , departmentRepository.findAll());
 	 return "employee";
 	}

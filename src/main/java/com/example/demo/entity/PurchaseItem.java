@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "purchaseItem")
+@Table(name = "purchase_Items")
 public class PurchaseItem {
 
 	@Id
@@ -18,7 +18,7 @@ public class PurchaseItem {
 	private Long id;
 	
 	@Column
-	private Integer amout;
+	private Integer amount;
 	
 	@ManyToOne
 	@JoinColumn(name = "purchase_id")
@@ -36,12 +36,12 @@ public class PurchaseItem {
 		this.id = id;
 	}
 
-	public Integer getAmout() {
-		return amout;
+	public Integer getAmount() {
+		return amount;
 	}
 
-	public void setAmout(Integer amout) {
-		this.amout = amout;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
 	public Purchase getPurchase() {
@@ -59,5 +59,6 @@ public class PurchaseItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
 	
 }

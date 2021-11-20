@@ -25,8 +25,8 @@ public class CreateEmployee {
 	
 	@Test
 	public void start() {
-		Department t1 = departmentRepository.findById(7L).get();
-		Department t2 = departmentRepository.findById(8L).get();
+		Department t1 = departmentRepository.findById(4L).get();
+		Department t2 = departmentRepository.findById(5L).get();
 		
 		Employee e1 = new Employee();
 		Employee e2 = new Employee();

@@ -38,11 +38,11 @@ public class Product {
 	@Column
 	private String description; //商品描述
 	
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "product")
 	@OrderBy("id ASC")
 	private Set<OrderItem> orderItems = new LinkedHashSet<>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "product")
 	@OrderBy("id ASC")
 	private Set<PurchaseItem> purchaseItems = new LinkedHashSet<>();
 

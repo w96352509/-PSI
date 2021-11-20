@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
 
 	@Id
@@ -38,9 +38,21 @@ public class Employee {
 	@OrderBy("id ASC")
 	private Set<Purchase> purchases = new LinkedHashSet<>();
 	
+	@OneToMany(mappedBy = "employee")
+	@OrderBy("id ASC")
+	private Set<Order> orders = new LinkedHashSet<>();
+	
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private Department department;
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 
 	public Long getId() {
 		return id;

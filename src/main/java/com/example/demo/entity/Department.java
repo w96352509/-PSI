@@ -13,7 +13,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "department")
+@Table(name = "departments")
 public class Department {
 
 	 @Id

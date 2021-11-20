@@ -133,6 +133,21 @@ public class OrderController {
 		return "redirect:/order/" + oid + "/view/item";
 	}
 	
+	@RequestMapping("/{oid}/delete/item/{iid}")
+	public String deleteItem(@PathVariable("oid") Long oid, @PathVariable("iid") Long iid) {
+		orderItemRepository.deleteById(iid);
+		return "redirect:/order/" + oid + "/view/item";
+	}
+	
+	@RequestMapping("/{oid}/edit/item/{iid}")
+	public String editItem(Model model, @PathVariable("oid") Long oid, @PathVariable("iid") Long iid) {
+		Order order = orderRepository.findById(oid).get();
+		OrderItem orderItem = orderItemRepository.findById(iid).get();
+		model.addAttribute("order", order);
+		model.addAttribute("orderItem", orderItem);
+		model.addAttribute("products", productRepository.findAll());
+		return "orderitem";
+	}
 	
 	
 	   
