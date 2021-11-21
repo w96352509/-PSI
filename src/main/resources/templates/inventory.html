@@ -23,14 +23,13 @@
 		<th>庫存</th>
 		</tr>
 		<tr th:each= "p , product:${products}">
-		<th th:text="${p.id}" ></th>
-		<th th:text="${p.name}" ></th>
-		<th th:text="${p.cost}" ></th>
-		<th th:text="${p.price}" ></th>
-		<th th:text="${p.amount1}" ></th>
-		<th th:text="${p.amount2}" ></th>
-		<th th:text="${p.amount1 - p.amount2}" ></th>
-		
+		<td th:text="${p.id}" ></td>
+		<td th:text="${p.name}" ></td>
+		<td th:text="${p.cost}" ></td>
+		<td th:text="${p.price}" ></td>
+		<td th:text="${p.amount1}"></td>
+		<td th:text="${p.amount2}"></td>
+		<td th:text="${p.amount3}"></td>
 		</tr>
 		</table>
 		<!-- Footer -->

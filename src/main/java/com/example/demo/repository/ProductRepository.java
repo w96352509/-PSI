@@ -15,7 +15,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	@Query(nativeQuery = true, value = "select p.id, p.name, p.cost, p.price,\r\n"
 			+ "(select sum(amount) from purchase_items where product_id = p.id limit 1) as amount1,\r\n"
-			+ "(select sum(amount) from order_items where product_id = p.id limit 1) as amount2 \r\n"
+			+ "(select sum(amount) from order_items where product_id = p.id limit 1) as amount2 ,\r\n"
+			+ "(select sum(amount) from purchase_items where product_id = p.id limit 1) - (select sum(amount) from order_items where product_id = p.id limit 1) as amount3 \r\n"
 			+ "from products p")
 	List<Inventory> queryInventory();
 	

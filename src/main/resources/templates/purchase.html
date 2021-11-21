@@ -54,6 +54,7 @@
              <td>供應商</td>
              <td>經手員工</td>
              <td>採購單明細</td>
+             
              <td>修改</td>
              <td>刪除</td>
           </tr>  
@@ -64,18 +65,21 @@
             <td th:text="${purchase.date}"></td>
             <td th:text="${purchase.supplier.name}"></td>
             <td th:text="${purchase.employee.name}"></td>
+            
             <td>
             <a th:href="@{/purchase/{pid}/view/item(pid=${purchase.id})}"
-            >
+               class="btn btn-primary">
             明細
             </a>
             </td>
             <td>
-            <a th:href="@{/purchase/edit/{id}(id=${purchase.id})}">修改</a>
+            <a th:href="@{/purchase/edit/{id}(id=${purchase.id})}"
+              class="btn btn-primary">修改</a>
             </td>
             <td>
             <a th:if="${#lists.size(purchase.purchaseItems)==0}"
-               th:href="@{/purchase/delete/{id}(id=${purchase.id})}">刪除</a>
+               th:href="@{/purchase/delete/{id}(id=${purchase.id})}"
+               class="btn btn-danger">刪除</a>
             </td>
          </tr>
    </tbody>

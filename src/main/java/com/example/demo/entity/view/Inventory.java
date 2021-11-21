@@ -7,5 +7,6 @@ public interface Inventory {
 		Integer getPrice();
 		Integer getAmount1(); // 採購數量
 		Integer getAmount2(); // 銷貨(訂購)數量
+		Integer getAmount3();
 }
 

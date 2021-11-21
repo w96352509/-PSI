@@ -16,15 +16,13 @@
 		<form action="#" th:action="@{/order/add}" th:object="${order}"
 			method="post">
 			<div class="form-group">
-				<label for="date">下單日期:</label> 
-				   <input type="date"
+				<label for="date">下單日期:</label> <input type="date"
 					th:value="${#dates.format(#dates.createNow(),'yyyy-MM-dd')}"
 					name="date" id="date" placeholder="date">
 			</div>
 			<div class="form-group">
-				<label for="name">客戶:</label> 
-				  <select class="form-control select2"
-				    th:onchange="window.location.href='./?customer_id=' + this.value"
+				<label for="name">客戶:</label> <select class="form-control select2"
+					th:onchange="window.location.href='./?customer_id=' + this.value"
 					th:field="*{customer.id}">
 					<option th:selected="(${c.id} eq (*{customer.id}?:0))"
 						th:each=c:${customers} th:text=${c.name} th:value=${c.id}>
@@ -50,8 +48,11 @@
 					class="form-control" placeholder="備註....">
 　              </textarea>
 			</div>
-			<input type="submit" value="提交訂單!" class="btn btn-danger">
-		</form>
+			<div>
+				<input type="submit" value="提交訂單!" class="btn btn-danger">
+			</div>
+        </form>
+        <p/>
 		<table border="1" class="table table-striped table-responsive-md">
 			<thead>
 				<tr>
@@ -74,20 +75,13 @@
 					<td th:text="${order.employee.name}"></td>
 					<td th:text="${order.shipmentdate}"></td>
 					<td th:text="${order.remarks}"></td>
-					<td>
-					<a th:href="@{/order/edit/{id}(id=${order.id})}"
+					<td><a th:href="@{/order/edit/{id}(id=${order.id})}"
 						class="btn btn-primary">編輯</a></td>
-					<td>
-					<a th:href="@{/order/{id}/view/item(id=${order.id})}"
-					class="btn btn-primary">
-					檢視內部內容(明細)</a>
-					</td>
-					<td>
-					   <a 
-					    th:if="${#lists.size(order.orderItems)==0}"
+					<td><a th:href="@{/order/{id}/view/item(id=${order.id})}"
+						class="btn btn-primary"> 檢視內部內容(明細)</a></td>
+					<td><a th:if="${#lists.size(order.orderItems)==0}"
 						th:href="@{/order/delete/{id}(id=${order.id})}"
-						class="btn btn-danger">刪除</a>
-						</td>
+						class="btn btn-danger">刪除</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -117,7 +117,10 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("/{oid}/edit/item/{iid}")
-	public String editItem(@PathVariable("oid") Long oid , @PathVariable("iid") Long iid ,Model model) {
+	public String editItem(
+			@PathVariable("oid") Long oid , 
+			@PathVariable("iid") Long iid ,
+			Model model) {
 		PurchaseItem purchaseItem = purchaseItemRepository.findById(iid).get();
 		Purchase purchase = purchaseRepository.findById(oid).get();
 		model.addAttribute("purchaseItem", purchaseItem);
