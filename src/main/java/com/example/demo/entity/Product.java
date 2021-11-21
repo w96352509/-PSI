@@ -117,6 +117,8 @@ public class Product {
 	public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
 		this.purchaseItems = purchaseItems;
 	}
+
+	
 	
 	
 }
